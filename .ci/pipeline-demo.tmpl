@@ -1,0 +1,63 @@
+resource_types:
+- name: kubernetes
+  type: docker-image
+  source:
+    repository: zlabjp/kubernetes-resource
+    tag: "1.9"
+
+resources:
+  - name: git-app
+    type: git
+    source:
+      uri: https://github.com/gumshuda404/multiBranchConcourse.git
+      branch: ___BRANCH___
+  - name: docker-demo
+    type: docker-image
+    source:
+      repository: rguichard/osones-blog
+      username: rguichard
+      password: {{dockerhub-passwd}}
+      tag: ___BRANCH___
+  - name: k8s
+    type: kubernetes
+    source:
+      kubeconfig: {{k8s_server}}
+jobs:
+  - name: "Docker Build"
+    public: false
+    plan:
+      - get: git-app
+        trigger: true
+      - task: Update version
+        file: git-app/update-version.yml
+        params:
+          BRANCH_NAME: ___BRANCH___
+      - put: docker-demo
+        params:
+          build: output
+          tag: output/branch
+  - name: "Deploy"
+    public: false
+    plan:
+      - get: git-app
+      - get: docker-demo
+        trigger: true
+        passed:
+          - "Docker Build"
+      - task: Generate k8s resources
+        file: git-app/generate-manifest.yml
+      - put: k8s
+        params:
+          kubectl: apply -f output/manifest.yml
+          wait_until_ready: 300
+  - name: "Rolling update"
+    public: false
+    plan:
+      - get: k8s
+        trigger: true
+        passed:
+          - "Deploy"
+      - put: k8s
+        params:
+          kubectl: delete pods -l app=app-___BRANCH___ -n default
+          wait_until_ready: 300
