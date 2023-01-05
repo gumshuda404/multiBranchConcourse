@@ -16,4 +16,16 @@ jobs:
       - get: demo
         trigger: true
       - task: create-pipelines
-        file: demo/create-pipeline.yml
+        config:
+          inputs:
+             - name: branches
+          outputs:
+             - name: output
+          platform: linux
+          image_resource:
+            type: docker-image
+            source:
+              repository: rguichard/fly
+              tag: latest
+          run:
+            path: demo/create-pipeline.sh
