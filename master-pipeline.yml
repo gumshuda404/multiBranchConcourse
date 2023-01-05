@@ -10,10 +10,10 @@ resources:
     source:
       uri: https://github.com/gumshuda404/multiBranchConcourse.git
 jobs:
-  - name: "Create pipelines"
+  - name: Create-pipelines
     public: false
     plan:
       - get: demo
         trigger: true
-      - task: Create pipelines
+      - task: Create-pipelines
         file: demo/create-pipeline.yml
