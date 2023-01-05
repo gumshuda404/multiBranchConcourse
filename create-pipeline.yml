@@ -12,4 +12,4 @@ inputs:
 outputs:
   - name: output
 run:
-  path: git/create-pipeline.sh
+  path: demo/create-pipeline.sh
