@@ -1,8 +1,8 @@
-resource_types:
-- name: git-branches
-  type: docker-image
-  source:
-    repository: vito/git-branches-resource
+#resource_types:
+#- name: git-branches
+# type: docker-image
+# source:
+# repository: vito/git-branches-resource
 
 resources:
   - name: demo
