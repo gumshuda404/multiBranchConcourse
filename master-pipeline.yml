@@ -2,7 +2,13 @@
 #- name: git-branches
 # type: docker-image
 # source:
-# repository: vito/git-branches-resource
+#     repository: vito/git-branches-resource
+
+resource_types:
+- name: git-branches
+  type: registry-image
+  source:
+    repository: ljfranklin/terraform-resource
 
 resources:
   - name: demo
