@@ -6,9 +6,9 @@
 
 resource_types:
 - name: git-branches
-  type: registry-image
+  type: Docker-image
   source:
-    repository: ljfranklin/terraform-resource
+    repository: vito/git-branch-heads-resource
 
 resources:
   - name: demo
