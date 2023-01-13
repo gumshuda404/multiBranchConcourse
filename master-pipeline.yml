@@ -6,7 +6,7 @@
 
 resource_types:
 - name: git-branches
-  type: Docker-image
+  type: registry-image
   source:
     repository: concourse/git-resource
 
