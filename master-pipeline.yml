@@ -6,9 +6,9 @@
 
 resource_types:
 - name: git-branches
-  type: registry-image
+  type: docker-image
   source:
-    repository: concourse/git-resource
+    repository: teliaoss/concourse-awscli
 
 resources:
   - name: demo
