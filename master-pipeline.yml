@@ -9,7 +9,7 @@ resource_types:
   type: docker-image
   source:
     repository: concourse/git-resource
-    tag: 1.14.7-ubuntu-20230117
+    tag: 1.14.7-alpine-20230114
     
     
 resources:
