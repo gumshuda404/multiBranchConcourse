@@ -34,5 +34,6 @@ jobs:
             type: docker-image
             source:
               repository: alpine
+          check_every: never
           run:
             path: demo/create-pipeline.sh
