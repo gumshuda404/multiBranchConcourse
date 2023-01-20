@@ -16,6 +16,7 @@ resources:
     type: git-branches
     source:
       uri: https://github.com/gumshuda404/multiBranchConcourse.git
+    check_every: never
 jobs:
   - name: create-pipelines
     public: false
