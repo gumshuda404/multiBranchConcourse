@@ -1,15 +1,9 @@
-#resource_types:
-#- name: git-branches
-# type: docker-image
-# source:
-#     repository: vito/git-branches-resource
-
 resource_types:
 - name: git-branches
   type: docker-image
   source:
-    repository: concourse/git-resource
-    tag: 1.14.5-ubuntu-20220715
+    repository: aoldershaw/git-branches-resource
+    check_every: never
     
     
 resources:
@@ -34,6 +28,6 @@ jobs:
             type: docker-image
             source:
               repository: alpine
-              tag: latest
+              check_every: never
           run:
             path: demo/create-pipeline.sh
