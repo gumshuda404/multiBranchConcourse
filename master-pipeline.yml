@@ -9,7 +9,8 @@ resource_types:
 - name: git-branches
   type: registry-image
   source:
-    repository: concourse/git-resource
+    repository: aoldershaw/git-branches-resource
+  check_every: never
 
 resources:
   - name: demo
